@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Contact App Manager</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" />
+    <!-- Font Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<style>
+    * {
+        color: white;
+    }
+</style>
+
+<body>
+    <section class="background-radial-gradient overflow-hidden">
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: rgb(56, 56, 56);">
+                    <div
+                        class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                        <a href="/"
+                            class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <span class="fs-5 d-none d-sm-inline">Contact App Manager</span>
+                        </a>
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                            id="menu">
+                            <li>
+                                <a href="#" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                    <i class="fs-4 bi-journal-bookmark-fill"></i> <span
+                                        class="ms-1 d-none d-sm-inline">Kontak</span> </a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="dropdown mb-4">
+                            <a href="#"
+                            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-person mx-2"></i>
+                            <span class="">User</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                                <li><a class="dropdown-item" href="./index.html">Log out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col py-3 pt-5">
+                    <div class="col-md">
+                        <button class="btn btn-light btn-sm text-white border-0"
+                            style="font-weight: 600; background-color:darkcyan;" data-bs-toggle="modal"
+                            data-bs-target="#tambahData">
+                            <i class="bi bi-person-plus-fill"></i>&nbsp;Tambah data
+                        </button>
+                    </div>
+                    <div class="col pt-5">
+                        <div class="col-md">
+                            <table id="dataContact"
+                                class="list table table-striped table-responsive table-hover text-center"
+                                style="width:100%">
+                                <thead class="table">
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Nama</th>
+                                        <th>Nomor HP</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Valentino</td>
+                                        <td>082143981626</td>
+                                        <td>
+                                            <button class="btn btn-warning btn-sm text-white" style="font-weight: 600;"
+                                                data-bs-toggle="modal" data-bs-target="#ubah">
+                                                <i class="bi bi-pencil-square"></i>&nbsp;Ubah
+                                            </button> |
+                                            <a href="#" class="btn btn-danger btn-sm" style="font-weight: 600;"
+                                                onclick="return confirm('Apakah anda yakin ingin menghapus data?');">
+                                                <i class="bi bi-trash-fill"></i>&nbsp;Hapus</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="ubah" tabindex="-1" aria-labelledby="ubahLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="color: black;" id="ubahLabel">Ubah data</h5>
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" onsubmit="onFormSubmit()">
+                                <div class="form-group mb-3">
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        placeholder="Masukkan Nama">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="tel" class="form-control" name="phone" id="phone"
+                                        placeholder="Masukkan Nomor HP">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" value="Submit" class="btn btn-primary"
+                                data-bs-dismiss="modal">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="color: black;" id="tambahDataLabel">Tambah data</h5>
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" onsubmit="onFormSubmit()">
+                                <div class="form-group mb-3">
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        placeholder="Masukkan Nama">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="tel" class="form-control" name="phone" id="phone"
+                                        placeholder="Masukkan Nomor HP">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" value="Submit" class="btn btn-primary"
+                                data-bs-dismiss="modal">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bootstrap -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+                crossorigin="anonymous">
+            </script>
+
+            <!-- Data Tables -->
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap5.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/js/bootstrap.bundle.min.js"></script>
+    </section>
+</body>
+
+</html>
