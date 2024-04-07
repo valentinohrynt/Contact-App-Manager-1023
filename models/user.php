@@ -24,14 +24,6 @@ class User {
         return $result->fetch_assoc();
     }
     
-
-    public function getUserById($id) {
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
-    }
     public function getUserByEmail($email) {
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = ?");
         $stmt->bind_param("s", $email);
