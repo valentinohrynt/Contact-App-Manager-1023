@@ -115,6 +115,7 @@
                 </div>
             </div>
             <?php foreach ($contacts as $contact) : ?>
+            <!-- VIEW MODAL FORM UNTUK MENGUBAH DATA KONTAK -->
             <div class="modal fade" id="ubahData-<?php echo $contact['id']; ?>" tabindex="-1"
                 aria-labelledby="ubahDataLabel-<?php echo $contact['id']; ?>" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -146,6 +147,7 @@
                     </div>
                 </div>
             </div>
+            <!-- VIEW MODAL KONFIRMASI UNTUK MENGHAPUS DATA KONTAK -->
             <div class="modal fade" id="deleteData-<?php echo $contact['id']; ?>" tabindex="-1"
                 aria-labelledby="deleteDataLabel-<?php echo $contact['id']; ?>" aria-hidden="true">
                 <div class="modal-dialog">
@@ -170,6 +172,7 @@
                 </div>
             </div>
             <?php endforeach; ?>
+            <!-- VIEW MODAL FORM UNTUK MENAMBAH DATA KONTAK -->
             <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
