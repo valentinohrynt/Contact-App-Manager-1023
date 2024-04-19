@@ -22,39 +22,6 @@ body {
     );
   height: 100vh;
 }
-.navbar {
-  border-bottom: #01bc39 1px solid;
-}
-.navbar .navbar-brand {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-}
-
-.navbar .navbar-brand:hover {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #01bc39;
-}
-
-.navbar .navbar-nav .nav-item .nav-link,
-.navbar .navbar-nav .nav-item .nav-link:hover {
-  margin-top: 10px;
-  color: white;
-}
-
-.navbar .navbar-nav .nav-item .nav-link::after {
-  content: "";
-  display: block;
-  padding-bottom: 0.5rem;
-  border-bottom: 0.1rem solid #01bc39;
-  transform: scaleX(0);
-  transition: 0.2s linear;
-}
-
-.navbar .navbar-nav .nav-item .nav-link:hover::after {
-  transform: scaleX(0.5);
-}
 
 #radius-shape-1 {
   height: 220px;
@@ -119,16 +86,9 @@ input:valid ~ label {
   box-shadow: 0 0 0 0.2rem rgba(91, 194, 194, 0.5);
 }
 
-.link a {
-  display: inline-block;
-  margin-top: 20px;
-  margin-right: 10px;
-  color: #fff;
-}
-
 @media (min-width: 768px) and (max-width: 991px) {
   label {
-    left: -13rem;
+    left: -12.5rem;
   }
   input:focus ~ label,
   input:valid ~ label {
