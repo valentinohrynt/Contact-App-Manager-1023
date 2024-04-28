@@ -1,51 +1,56 @@
 <?php
-require_once __DIR__ . '/../app/config/db_connect.php';
+include_once __DIR__ . '/../app/config/db_connect.php';
 
-
-class User {
-    private $conn;
-
-    public function __construct($conn) {
-        $this->conn = $conn;
-    }
-
-    public function createUser($username, $passwordHash, $fullName, $phone, $email) {
-        $stmt = $this->conn->prepare("INSERT INTO users (username, password, full_name, phone, email) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $username, $passwordHash, $fullName, $phone, $email);
-        $stmt->execute();
-        return $this->conn->insert_id;
-    }
-
-    public function getUserByUsername($username) {
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
+class User
+{
+    static function login($data = [])
+    {
+        global $conn;
+    
+        $username = $data['username'];
+        $password = $data['password'];
+    
+        $result = $conn->query("SELECT * FROM users WHERE username = '$username'");
+        if ($result = $result->fetch_assoc()) {
+            $hashedPassword = $result['password'];
+            $verify = password_verify($password, $hashedPassword);
+            if ($verify) {
+                return $result;
+            } else {
+                return false;
+            }
+        }
     }
     
-    public function getUserByEmail($email) {
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = ?");
-        $stmt->bind_param("s", $email);
+    static function register($data = [])
+    {
+        global $conn;
+
+        $username = $data['username'];
+        $password = $data['password'];
+        $full_name = $data['full_name'];
+        $phone = $data['phone'];
+        $email = $data['email'];
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO users SET full_name = ?, username = ?, password = ?, phone = ?, email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('sssss', $full_name, $username, $hashedPassword, $phone, $email);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
+
+        $result = $stmt->affected_rows > 0 ? true : false;
+        return $result;
     }
 
-    public function updateUser($id, $username, $passwordHash, $fullName, $phone, $email) {
-        $stmt = $this->conn->prepare("UPDATE users SET username = ?, password = ?, full_name = ?, phone = ?, email = ? WHERE id = ?");
-        $stmt->bind_param("sssssi", $username, $passwordHash, $fullName, $phone, $email, $id);
+    static function getPassword($username)
+    {
+        global $conn;
+        $sql = "SELECT password FROM users WHERE username = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $username);
         $stmt->execute();
-        return $stmt->affected_rows;
-    }
 
-    public function deleteUser($id) {
-        $stmt = $this->conn->prepare("DELETE FROM users WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        return $stmt->affected_rows;
+        $result = $stmt->affected_rows > 0 ? true : false;
+        return $result;
     }
 }
-
-$userModel = new User($conn);
-?>

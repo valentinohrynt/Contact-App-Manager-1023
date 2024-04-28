@@ -1,21 +1,12 @@
 <?php
-class DbConnect {
-    private $servername = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $database = "db_contactappmanager";
-    private $conn;
+require_once 'env.php';
 
-    public function __construct() {
-        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->database);
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
-        }
-    }
+$host = $_ENV['DB_HOST'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
+$database = $_ENV['DB_NAME'];
 
-    public function getConnection() {
-        return $this->conn;
-    }
+$conn = new mysqli($host, $username, $password, $database);
+if ($conn->connect_error) {
+    die("Koneksi database gagal: " . $conn->connect_error);
 }
-$db = new DbConnect();
-$conn = $db->getConnection();
