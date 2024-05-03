@@ -21,7 +21,7 @@
 </style>
 
 <body>
-    <section class="background-radial-gradient overflow-hidden">
+    <section class="background-radial-gradient overflow-auto">
         <div class="container-fluid">
             <div class="row flex-nowrap">
                 <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: rgb(138, 154, 91);">
