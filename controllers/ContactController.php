@@ -11,7 +11,7 @@ class ContactController
         } else {
             $post = array_map('htmlspecialchars', $_POST);
             $contact = Contact::createContact([
-                'contact_name' => $post['contact_name'],
+                'contact_name' => $post['contactName'],
                 'phone' => $post['phone'],
                 'user_id' => $_SESSION['user']['id']
             ]);
