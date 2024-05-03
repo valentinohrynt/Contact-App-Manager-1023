@@ -5,6 +5,7 @@ ob_start();
 include '/assets/css/style.css';
 $style = ob_get_clean();
 ?>
+<?php include_once 'resources/views/master-layout/master.php'; ?>
 
 <?php
 if (isset($_GET['auth'])) {
@@ -18,4 +19,4 @@ if (isset($url)) {
 }
 ?>
 
-<?php include 'resources/views/master-layout/master.php'; ?>
+<?php include_once 'resources/views/master-layout/master.php'; ?>

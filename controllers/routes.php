@@ -16,5 +16,5 @@ route('dashboard/delete-contact', 'post', 'ContactController::deleteContact');
 
 
 route('/', 'get', function () {
-    echo ('Halo, test 1 2 3');
+    header('Location: login');
 });

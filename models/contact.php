@@ -20,7 +20,9 @@ class Contact
 
     static function createContact($data=[])
     {
-        extract($data);
+        $contactName = $data['contact_name'];
+        $phone = $data['phone'];
+        $userId = $data['user_id'];
         global $conn;
         $stmt = $conn->prepare("INSERT INTO contacts (contact_name, phone, user_id, created_at) VALUES (?, ?, ?, NOW())");
         $stmt->bind_param("ssi", $contactName, $phone, $userId);
