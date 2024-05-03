@@ -35,6 +35,7 @@ class AuthController {
         $user = User::register([
             'name' => $post['name'], 
             'username' => $post['username'], 
+            'password' => $post['password'],
             'full_name' => $post['full_name'],
             'phone' => $post['phone'],
             'email' => $post['email']
